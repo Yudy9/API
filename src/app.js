@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
     res.json(rows[0][0])
   })
  app.get('/productos', async (req, res) => {
-    const [rows] = await pool.query('SELECT * FROM productos')
+    const [rows] = await pool.query('SELECT * FROM producto')
     res.json(rows)
   })
   
