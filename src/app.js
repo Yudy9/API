@@ -21,13 +21,13 @@ app.get('/', async (req, res) => {
   
   app.post('/clientes', async (req, res) => {
     const data = req.body
-    const [rows] = await pool.query('insert into clientes ("documento", "nombre" ,"apellidos" , "direccion") select data.documento data.nombre data.apellidos data.direccion')
+    const [rows] = await pool.query('insert into clientes (documento,nombre,apellidos,direciion)  select data.documento data.nombre data.apellidos data.direccion')                                                              
 	res.json(rows[0][0])
   })
  
   app.post('/producto', async (req, res) => {
     const data = req.body
-    const [rows] = await pool.query('insert into producto("nombre" ,"descripcion" , "precio") select  data.nombre data.descripcion data.precio')
+    const [rows] = await pool.query('insert into producto(nombre ,descripcion , precio) select  data.nombre data.descripcion data.precio')
     res.json(rows[0][0])
   })
  app.get('/productos', async (req, res) => {
@@ -42,7 +42,7 @@ app.get('/', async (req, res) => {
    })
   app.post('/orden_detalle', async (req, res) => {
     const data = req.body
-    const [rows] = await pool.query('insert into orden_detalle( "cantidad" ) select data.cantidad ')
+    const [rows] = await pool.query('insert into orden_detalle( cantidad ) select data.cantidad ')
     res.json(rows[0][0])
   })
   
@@ -53,13 +53,13 @@ app.get('/', async (req, res) => {
   
  app.post('/ordenes', async (req, res) => {
     const data = req.body
-    const [rows] = await pool.query('insert into ordenes( "documento","fecha" ) select data.documento data.fecha ')
+    const [rows] = await pool.query('insert into ordenes( documento,fecha ) select data.documento data.fecha ')
     res.json(rows[0][0])
   })
   
   app.post('/stock', async (req, res) => {
     const data = req.body
-    const [rows] = await pool.query('insert into stock( "existencia" ) select data.existencia ')
+    const [rows] = await pool.query('insert into stock( existencia ) select data.existencia ')
     res.json(rows[0][0])
   })
 
