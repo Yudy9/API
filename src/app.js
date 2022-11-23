@@ -19,7 +19,7 @@ app.get('/', async (req, res) => {
     res.json(rows)
   })
   
-  app.post('/cliente', async (req, res) => {
+  app.post('/clientes', async (req, res) => {
     const data = req.body
     const [rows] = await pool.query('insert into clientes ("documento", "nombre" ,"apellidos" , "direccion") select data.documento data.nombre data.apellidos data.direccion')
 	res.json(rows[0][0])
@@ -30,8 +30,12 @@ app.get('/', async (req, res) => {
     const [rows] = await pool.query('insert into producto("nombre" ,"descripcion" , "precio") select  data.nombre data.descripcion data.precio')
     res.json(rows[0][0])
   })
+ app.get('/productos', async (req, res) => {
+    const [rows] = await pool.query('SELECT * FROM productos')
+    res.json(rows)
+  })
   
-  app.get('/orden_detalle/:IdOrden', async (req, res) => {
+  app.get('/orden_detalles/:IdOrden', async (req, res) => {
     const id = req.params
     const [rows] = await pool.query('SELECT * FROM orden_detalle')
     res.json(rows);
